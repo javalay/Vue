@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .active{
+            background: rgb(235, 15, 15);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <!-- food中的每一项的迭代目标   如果food.discount 存在那么就执行food.price*food.discount 如果不存在呢，就执行food.price-->
+            <li v-for="food in foodList">{{food.name}}:￥{{food.discount ? food.price*food.discount:food.price}}</li>
+        </ul>
+        
+    </div>
+    <div id="aqq">
+        <a :class="{active: isActive}" :href="url">
+            点我
+            <!-- <img v-bind:src="img"> -->
+        </a>
+    </div>
+    <div id="qq">
+        <!-- 当鼠标进入的时候，当鼠标出去的时候 -->
+        <button v-on="{mouseenter: onEnter,mouseleave: onOut}" @click="onClick">点我</button>
+        <!--@v-on的缩写  submit.stop 输入停止事件 v-on:keyup=输入事件的监听 -->
+        <form @keyup.enter="onEnter"@submit.prevent="onSubmit">
+            <input type="text">
+            <button type="submit">提交</button>
+        </form>
+    </div>
+    <div id="ww">
+        <!-- v-model 单个属性是自动更新   v-model.lazy惰性更新 v-model.trim省略其中的空格-->
+        <input type="text" v-model="price">
+        <!-- pre来显示有多少空格 -->
+     <pre>{{price}}</pre>
+    </div>
+    <div id="tt">
+        <!-- radio 单选框 checkbox复选框多选  -->
+        <!-- <label>
+            男
+        <input  v-model="sex" value="male" type="checkbox">
+        </label>
+        <label>
+            女
+        <input v-model="sex" value="female" type="checkbox">
+        </label>
+            <br>
+            {{sex}}<br> -->
+        <!-- 多行文字编辑器 -->
+        <!-- <textarea v-model="article" ></textarea> -->
+        <div>你来自哪里？</div>
+        <select v-model='from'>
+            <option value="1">澄家沟</option>
+            <option value="2">王家沟</option>
+        </select>
+        {{from}}
+        <div>你来自哪里？</div>
+        <select v-model='dest' multiple>
+            <option value="1">澄家沟</option>
+            <option value="2">王家沟</option>
+            <option value="3">李家沟</option>
+            <option value="4">杨家沟</option>
+            <option value="5">Ⅹ家沟</option>
+            <option value="6">仙家沟</option>
+        </select>
+        {{dest}}
+    </div>
+    <div id="ff">
+        <div v-if="role =='admin' || role =='super_admin'">
+            管理员你好
+        </div>
+        <div v-else-if="role =='hr'">
+            待查看建立列表：<br>
+            ...
+        </div>
+    </div>
+    <div id="yy">
+        <table border="1">
+            <thead>
+                <th>学科</th>
+                <th>分数</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>数学</td>
+                    <td><input type="text" v-model.number="math"></td>
+                </tr>
+                <tr>
+                        <td>物理</td>
+                        <td><input type="text" v-model.number="physics"></td>
+                    </tr>
+                    <tr>
+                            <td>英语</td>
+                            <td><input type="text" v-model.number="english"></td>
+                        </tr>
+                        <tr>
+                                <td>总分</td>
+                                <td>{{sum}}</td>
+                            </tr>
+                            <tr>
+                                    <td>平均分</td>
+                                    <td>{{average}}</td>
+                                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="seg1">
+        <alert></alert>
+    </div>
+</div>
+<div id="seg2">
+    <alert></alert>
+</div>
+    <script src="https://cdn.bootcss.com/vue/2.5.15/vue.min.js"></script>
+    <script src="mmain.js"></script>
+</body>
+</html>
