@@ -117,4 +117,30 @@ var app=new Vue({
 });
 var app=new Vue({
     el:'#seg2',
-})
+});
+Vue.component('like',{
+    // 在就是文件中自定义一个组件button  绑定一个类 liked变色  一个点击事件的监听
+    // template:'#like-component-tpl',  这是在HTML中定义后的一种方法
+    template:'<button :class="{liked:liked}" @click="toggle_like()">👍{{like_count}}</button>',
+    data :function(){
+        return{
+            like_count:0,
+            // liked 默认等于false
+            liked:false,
+        }
+    },
+    methods:{
+        toggle_like: function(){
+            // 如果当前没有点赞 再++
+            if(!this.liked)
+            this.like_count++;
+            // 如果当前已经点赞后就--
+            else
+            this.like_count--;
+            this.liked=!this.liked;
+        }
+    }
+});
+new Vue({
+    el:'#mm',
+});
